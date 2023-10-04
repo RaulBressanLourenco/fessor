@@ -14,10 +14,11 @@ export function TeacherList() {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
 
   useEffect(() => {
-    api.get("teachers"). then((response) => {
-      console.log(response);
+    api.get("teachers"). then(({data : {records} }) => {
+      const teachers = records.map((record: any) => record.fields);
+      console.log(teachers);
     })
-  }, [] )
+  }, [])
 
   function searchTeachers(e: React.FormEvent) {
     e.preventDefault();
